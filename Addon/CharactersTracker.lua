@@ -1,6 +1,5 @@
 KKZCT = {
-    name = "CharactersTracker",
-    logger = nil
+    name = "CharactersTracker"
 }
 
 -- BEGIN: Mount Leveling.
@@ -54,8 +53,6 @@ end
 -- END: Currency.
 
 function KKZCT.Initialize()
-    KKZCT.logger = LibDebugLogger(KKZCT.name)
-
     KKZCT.savedVariables = ZO_SavedVars:NewCharacterIdSettings("CharactersTracker_Data", 1, GetWorldName(), {})
     KKZCT.SaveMountData(false)
 
