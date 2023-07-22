@@ -1,0 +1,94 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:CharacterTracker.Client.ViewModels"
+             xmlns:converters="clr-namespace:CharacterTracker.Client.Converters"
+			 Width="1020" Height="450"
+             x:Class="CharacterTracker.Client.Views.MainView"
+             x:DataType="vm:MainViewModel">
+	<Design.DataContext>
+		<vm:MainViewModel />
+	</Design.DataContext>
+
+	<UserControl.Resources>
+		<converters:LongToDateTimeConverter x:Key="longToDateTimeConverter"/>
+	</UserControl.Resources>
+	
+	<StackPanel>
+		<ComboBox ItemsSource="{Binding Accounts}" DisplayMemberBinding="{Binding Name}"
+				  SelectedItem="{Binding SelectedAccount}" Width="160" Margin="16, 16, 0, 0"/>
+		<TabControl>
+
+			<!-- Craft -->
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock VerticalAlignment="Center">Craft</TextBlock>
+				</TabItem.Header>
+				<DataGrid ItemsSource="{Binding Characters}" IsReadOnly="True">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Character" Binding="{Binding Name}" />
+						
+						<DataGridTextColumn Header="Alchemy" Binding="{Binding Crafting.Alchemy}" />
+						<DataGridTextColumn Header="Enchanting" Binding="{Binding Crafting.Enchanting}" />
+
+						<DataGridTextColumn Header="Blacksmithing" Binding="{Binding Crafting.Blacksmithing}" />
+						<DataGridTextColumn Header="Clothing" Binding="{Binding Crafting.Clothing}" />
+
+						<DataGridTextColumn Header="Provisioning" Binding="{Binding Crafting.Provisioning}" />
+						<DataGridTextColumn Header="Woodworking" Binding="{Binding Crafting.Woodworking}" />
+						<DataGridTextColumn Header="Jewelry" Binding="{Binding Crafting.Jewelry}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+
+			<!-- Mount -->
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock VerticalAlignment="Center">Mount</TextBlock>
+				</TabItem.Header>
+				<DataGrid ItemsSource="{Binding Characters}" IsReadOnly="True">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Character" Binding="{Binding Name}" />
+
+						<DataGridTextColumn Header="Speed" Binding="{Binding Mount.Speed}" />
+						<DataGridTextColumn Header="Capacity" Binding="{Binding Mount.Capacity}" />
+						<DataGridTextColumn Header="Stamina" Binding="{Binding Mount.Stamina}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+
+			<!-- Currency -->
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock VerticalAlignment="Center">Currency</TextBlock>
+				</TabItem.Header>
+				<DataGrid ItemsSource="{Binding Characters}" IsReadOnly="True">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Character" Binding="{Binding Name}" />
+
+						<DataGridTextColumn Header="Gold" Binding="{Binding Currency.Gold}" />
+						<DataGridTextColumn Header="AP" Binding="{Binding Currency.AlliancePoints}" />
+						<DataGridTextColumn Header="TelVar" Binding="{Binding Currency.TelVar}" />
+						<DataGridTextColumn Header="Vouchers" Binding="{Binding Currency.Vouchers}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+
+			<!-- LFG -->
+			<TabItem>
+				<TabItem.Header>
+					<TextBlock VerticalAlignment="Center">LFG</TextBlock>
+				</TabItem.Header>
+				<DataGrid ItemsSource="{Binding Characters}" IsReadOnly="True">
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Character" Binding="{Binding Name}" />
+
+						<DataGridTextColumn Header="Dungeon" Binding="{Binding LFG.Dungeon, Converter={StaticResource longToDateTimeConverter}, Mode=OneWay}" />
+						<DataGridTextColumn Header="Battleground" Binding="{Binding LFG.Battleground, Converter={StaticResource longToDateTimeConverter}, Mode=OneWay}" />
+					</DataGrid.Columns>
+				</DataGrid>
+			</TabItem>
+		</TabControl>
+	</StackPanel>
+</UserControl>

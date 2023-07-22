@@ -1,0 +1,9 @@
+## Title: CharactersTracker
+## Version: 1.0.0
+## AddOnVersion: 16
+## APIVersion: 101037
+## Author: KrykiZZ
+## Description: Tracks your characters usefull stuff and stores it in google spreadsheets.
+## SavedVariables: CharactersTracker_Data
+
+CharactersTracker.lua
